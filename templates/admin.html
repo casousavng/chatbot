@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo - Chatbot KPIs</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .kpi-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .kpi-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .kpi-label {
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .kpi-tempo { color: #3498db; }
+        .kpi-conversao { color: #27ae60; }
+        .kpi-satisfacao { color: #f39c12; }
+        .kpi-reclamacoes { color: #e74c3c; }
+        
+        .chart-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .chart-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .table-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .table-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .table-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .status {
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status.novo {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .status.processando {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        .status.resolvido {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .refresh-btn:hover {
+            background: #5a6fd8;
+            transform: scale(1.1);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #e57373;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-section,
+            .table-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Dashboard Administrativo</h1>
+        <p>Monitoramento de KPIs do Chatbot Inteligente</p>
+    </div>
+    
+    <div class="container">
+        <div id="loading" class="loading">
+            <h3>🔄 Carregando dados...</h3>
+        </div>
+        
+        <div id="error" class="error" style="display: none;">
+            <h4>❌ Erro ao carregar dados</h4>
+            <p id="error-message"></p>
+        </div>
+        
+        <div id="dashboard-content" style="display: none;">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-number kpi-tempo" id="tempo-resposta">--</div>
+                    <div class="kpi-label">Tempo Médio de Resposta (s)</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-number kpi-conversao" id="taxa-conversao">--%</div>
+                    <div class="kpi-label">Taxa de Conversão</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-number kpi-satisfacao" id="satisfacao-media">--⭐</div>
+                    <div class="kpi-label">Satisfação Média</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-number kpi-reclamacoes" id="total-reclamacoes">--</div>
+                    <div class="kpi-label">Reclamações (30 dias)</div>
+                </div>
+            </div>
+            
+            <div class="chart-section">
+                <div class="chart-card">
+                    <div class="chart-title">📈 Leads por Produto</div>
+                    <canvas id="leads-produto-chart"></canvas>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-title">🎯 Leads por Mercado</div>
+                    <canvas id="leads-mercado-chart"></canvas>
+                </div>
+            </div>
+            
+            <div class="table-section">
+                <div class="table-card">
+                    <div class="table-title">📋 Últimos Leads</div>
+                    <div style="overflow-x: auto;">
+                        <table id="leads-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Empresa</th>
+                                    <th>Produto</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-tbody">
+                                <tr><td colspan="4" class="loading">Carregando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="table-card">
+                    <div class="table-title">⚠️ Reclamações Recentes</div>
+                    <div style="overflow-x: auto;">
+                        <table id="reclamacoes-table">
+                            <thead>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Mensagem</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reclamacoes-tbody">
+                                <tr><td colspan="3" class="loading">Carregando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="refresh-btn" onclick="loadDashboard()" title="Atualizar dados">
+        🔄
+    </button>
+    
+    <script>
+        let leadsChart, mercadoChart;
+        
+        async function loadDashboard() {
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const content = document.getElementById('dashboard-content');
+            
+            loading.style.display = 'block';
+            error.style.display = 'none';
+            content.style.display = 'none';
+            
+            try {
+                // Carregar KPIs
+                const kpisResponse = await fetch('/kpis');
+                if (!kpisResponse.ok) throw new Error('Erro ao carregar KPIs');
+                const kpisData = await kpisResponse.json();
+                
+                // Carregar leads
+                const leadsResponse = await fetch('/leads');
+                if (!leadsResponse.ok) throw new Error('Erro ao carregar leads');
+                const leadsData = await leadsResponse.json();
+                
+                // Carregar reclamações
+                const reclamacoesResponse = await fetch('/reclamacoes');
+                if (!reclamacoesResponse.ok) throw new Error('Erro ao carregar reclamações');
+                const reclamacoesData = await reclamacoesResponse.json();
+                
+                // Atualizar KPIs
+                updateKPIs(kpisData);
+                
+                // Atualizar gráficos
+                updateCharts(kpisData);
+                
+                // Atualizar tabelas
+                updateLeadsTable(leadsData);
+                updateReclamacoesTable(reclamacoesData);
+                
+                loading.style.display = 'none';
+                content.style.display = 'block';
+                
+            } catch (err) {
+                console.error('Erro:', err);
+                loading.style.display = 'none';
+                error.style.display = 'block';
+                document.getElementById('error-message').textContent = err.message;
+            }
+        }
+        
+        function updateKPIs(data) {
+            document.getElementById('tempo-resposta').textContent = data.kpis.tempo_medio_resposta_segundos;
+            document.getElementById('taxa-conversao').textContent = data.kpis.taxa_conversao_vendas_percentual + '%';
+            document.getElementById('satisfacao-media').textContent = data.kpis.satisfacao_media_estrelas + '⭐';
+            document.getElementById('total-reclamacoes').textContent = data.kpis.total_reclamacoes;
+        }
+        
+        function updateCharts(data) {
+            // Gráfico de Leads por Produto
+            const produtoCtx = document.getElementById('leads-produto-chart').getContext('2d');
+            
+            if (leadsChart) leadsChart.destroy();
+            
+            leadsChart = new Chart(produtoCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(data.detalhamento.leads_por_produto),
+                    datasets: [{
+                        data: Object.values(data.detalhamento.leads_por_produto),
+                        backgroundColor: [
+                            '#3498db',
+                            '#27ae60', 
+                            '#f39c12',
+                            '#e74c3c',
+                            '#9b59b6',
+                            '#1abc9c'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de Leads por Mercado
+            const mercadoCtx = document.getElementById('leads-mercado-chart').getContext('2d');
+            
+            if (mercadoChart) mercadoChart.destroy();
+            
+            mercadoChart = new Chart(mercadoCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(data.detalhamento.leads_por_mercado),
+                    datasets: [{
+                        label: 'Leads',
+                        data: Object.values(data.detalhamento.leads_por_mercado),
+                        backgroundColor: '#667eea',
+                        borderColor: '#5a6fd8',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateLeadsTable(leads) {
+            const tbody = document.getElementById('leads-tbody');
+            tbody.innerHTML = '';
+            
+            if (leads.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #666;">Nenhum lead encontrado</td></tr>';
+                return;
+            }
+            
+            leads.slice(0, 10).forEach(lead => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${lead.nome}</td>
+                    <td>${lead.empresa}</td>
+                    <td>${lead.produto}</td>
+                    <td><span class="status ${lead.status}">${lead.status}</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        function updateReclamacoesTable(reclamacoes) {
+            const tbody = document.getElementById('reclamacoes-tbody');
+            tbody.innerHTML = '';
+            
+            if (reclamacoes.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #666;">Nenhuma reclamação encontrada</td></tr>';
+                return;
+            }
+            
+            reclamacoes.slice(0, 10).forEach(reclamacao => {
+                const row = document.createElement('tr');
+                const mensagemResumo = reclamacao.mensagem.length > 50 
+                    ? reclamacao.mensagem.substring(0, 50) + '...'
+                    : reclamacao.mensagem;
+                    
+                row.innerHTML = `
+                    <td>${reclamacao.categoria}</td>
+                    <td title="${reclamacao.mensagem}">${mensagemResumo}</td>
+                    <td><span class="status ${reclamacao.status}">${reclamacao.status}</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        // Carregar dashboard ao iniciar
+        loadDashboard();
+        
+        // Auto-refresh a cada 5 minutos
+        setInterval(loadDashboard, 5 * 60 * 1000);
+    </script>
+</body>
+</html>

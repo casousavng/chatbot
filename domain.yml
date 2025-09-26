@@ -1,0 +1,189 @@
+version: "3.1"
+
+intents:
+  - saudacao
+  - despedida
+  - tipos_papel
+  - qualidade_papel
+  - sustentabilidade
+  - precos
+  - onde_comprar
+  - reclamacao
+  - garantia
+  - horario_atendimento
+  - info_tecnica
+  - empresa_desconto
+  - detectar_idioma
+  - bot_challenge
+  - ajuda_geral
+  - porque_idioma_errado
+  - nlu_fallback
+
+entities:
+  - tipos_folhas
+  - texturas
+  - telefone
+  - email
+
+slots:
+  idioma_detectado:
+    type: text
+    influence_conversation: true
+    initial_value: "pt"
+    mappings:
+    - type: from_entity
+      entity: idioma
+
+responses:
+  utter_saudacao:
+    - text: "Olá! 👋 Sou o assistente virtual da PaperCare. Posso ajudá-lo com informações sobre os nossos produtos de papel higiénico. Como posso ajudar?"
+      buttons:
+        - title: "📄 Tipos de Papel"
+          payload: "tipos de papel"
+        - title: "💰 Preços"
+          payload: "preços"
+        - title: "🛒 Onde Comprar"
+          payload: "onde comprar"
+        - title: "❓ O que posso perguntar?"
+          payload: "ajuda"
+
+  utter_tipos_papel:
+    - text: "🧻 **Os Nossos Produtos de Papel Higiénico:**\n\n🟡 **1 Folha** - Económico (€2,99 - pack 4 rolos)\n• Ideal para uso básico\n• 25 metros por rolo\n\n🟠 **2 Folhas** - Equilibrio preço/qualidade (€5,99 - pack 8 rolos)\n• Conforto e absorção\n• 20 metros por rolo\n\n� **3 Folhas Premium** - Máximo conforto (€12,99 - pack 24 rolos)\n• Ultra-macio e super-absorvente\n• 18 metros por rolo\n\n✨ **Todas as versões disponíveis em:**\n• Textura macia\n• Ultra-macia\n• Perfumada"
+      buttons:
+        - title: "💪 Qualidade e Resistência"
+          payload: "qualidade papel"
+        - title: "🛒 Onde Comprar"
+          payload: "onde comprar"
+        - title: "� Ver Preços"
+          payload: "preços"
+
+  utter_qualidade_papel:
+    - text: "💪 **Qualidade Premium Garantida:**\n\n✅ **Tecnologia de dupla absorção** - Absorve mais e melhor\n✅ **Ultra-resistente** - Não se desfaz mesmo molhado\n✅ **Hipoalergênico** - Dermatologicamente testado\n✅ **Livre de cloro** - Processo eco-friendly\n✅ **Textura macia** - Não irrita a pele\n✅ **Seguro para toda a família**\n\n🌿 **Perfeito para peles sensíveis!**"
+      buttons:
+        - title: "🌱 Sustentabilidade"
+          payload: "sustentabilidade"
+        - title: "� Info Técnica"
+          payload: "info tecnica"
+
+  utter_sustentabilidade:
+    - text: "🌍 **100% Eco-Friendly:**\n\n🌳 Fibras 100% recicladas com certificação FSC\n💧 Processo sem cloro, reduz 40% do consumo de água\n📦 Embalagem 100% reciclável (80% material reciclado)\n🌱 Plantamos 1 árvore a cada 10 rolos vendidos\n♻️ Biodegradável em 6 semanas\n\nCuidamos do planeta para as próximas gerações! 🌿"
+      buttons:
+        - title: "📏 Informações Técnicas"
+          payload: "info tecnica"
+        - title: "🧻 Ver Produtos"
+          payload: "tipos de papel"
+
+  utter_precos:
+    - text: "💰 **Preços Competitivos:**\n\n• 1 Folha: €2,99 (pack 4 rolos) - 25m/rolo\n• 2 Folhas: €5,99 (pack 8 rolos) - 20m/rolo  \n• 3 Folhas Premium: €12,99 (pack 24 rolos) - 18m/rolo\n\n🏢 **Descontos especiais para empresas a partir de 100 rolos/mês!**"
+      buttons:
+        - title: "🏢 Desconto Empresas"
+          payload: "empresa desconto"
+        - title: "🛒 Onde Comprar"
+          payload: "onde comprar"
+        - title: "🧻 Ver Produtos"
+          payload: "tipos de papel"
+
+  utter_onde_comprar:
+    - text: "🛒 **Onde Comprar:**\n\n🏪 Supermercados: Continente, Pingo Doce, Lidl, Auchan\n🌐 Online: www.papercare.pt, Amazon, FNAC\n🚚 Entrega ao domicílio em 24-48h\n📍 Consulte pontos de venda: www.papercare.pt/lojas\n\n📞 Encomendas: 800-123-456"
+      buttons:
+        - title: "🕐 Horário Atendimento"
+          payload: "horario atendimento"
+        - title: "� Ver Preços"
+          payload: "preços"
+        - title: "🏢 Desconto Empresas"
+          payload: "empresa desconto"
+
+  utter_reclamacao:
+    - text: "😔 Lamento que tenha tido uma experiência negativa. Queremos resolver isso!\n\n**Como fazer reclamação:**\n📧 Email: suporte@papercare.pt\n📞 Telefone: 800-123-456\n💬 Chat online: 24/7\n\n⚡ **Respondemos em 24h** e oferecemos substituição gratuita ou reembolso completo!"
+      buttons:
+        - title: "Garantia 100%"
+          payload: "garantia"
+        - title: "Horários"
+          payload: "horario atendimento"
+    - text: "😔 Lamento que haya tenido una experiencia negativa. ¡Queremos resolverlo!\n\n**Cómo hacer reclamación:**\n📧 Email: soporte@papercare.es\n📞 Teléfono: 800-123-456\n💬 Chat online: 24/7\n\n⚡ **Respondemos en 24h** y ofrecemos sustitución gratuita o reembolso completo!"
+    - text: "😔 Sorry you had a negative experience. We want to fix this!\n\n**How to complain:**\n📧 Email: support@papercare.com\n📞 Phone: 800-123-456\n💬 Online chat: 24/7\n\n⚡ **We respond within 24h** and offer free replacement or full refund!"
+
+  utter_garantia:
+    - text: "�️ **Garantia de Qualidade:**\n\n✓ Garantia total de satisfação ou dinheiro de volta\n✓ Troca gratuita em caso de defeito\n✓ Certificações ISO 9001 e FSC\n✓ Testado dermatologicamente\n✓ Aprovação da Associação Nacional de Consumidores\n\n📦 Produtos com defeito? Trocamos imediatamente!"
+      buttons:
+        - title: "� Como Reclamar"
+          payload: "reclamacao"
+        - title: "🌍 Sustentabilidade"
+          payload: "sustentabilidade"
+        - title: "🛒 Onde Comprar"
+          payload: "onde comprar"
+
+  utter_horario_atendimento:
+    - text: "🕐 **Horário de Atendimento:**\n\n� Segunda a Sexta: 9h00-18h00\n📅 Sábado: 9h00-13h00\n� Domingo: Encerrado\n\n📞 Linha direta: 800-123-456\n📧 Email 24h: suporte@papercare.pt\n🤖 ChatBot: Disponível 24/7 (eu estou aqui!) 😊"
+      buttons:
+        - title: "🛒 Onde Comprar"
+          payload: "onde comprar"
+        - title: "� Suporte Técnico"
+          payload: "info tecnica"
+        - title: "📧 Fazer Reclamação"
+          payload: "reclamacao"
+
+  utter_info_tecnica:
+    - text: "🔧 **Especificações Técnicas:**\n\n📏 **Medidas por rolo:**\n• 1 Folha: 25 metros\n• 2 Folhas: 20 metros  \n• 3 Folhas: 18 metros\n\n⚙️ **Composição:**\n• 80% fibras recicladas\n• 20% fibras virgens FSC\n• Perfurações a cada 11cm\n• Biodegradável em 6 semanas\n• Seguro para sistemas sépticos"
+      buttons:
+        - title: "🧻 Ver Produtos"
+          payload: "tipos de papel"
+        - title: "🌍 Sustentabilidade"
+          payload: "sustentabilidade"
+        - title: "🕰️ Garantia"
+          payload: "garantia"
+
+  utter_empresa_desconto:
+    - text: "🏢 **Descontos Corporativos:**\n\n💼 **Escritórios e Empresas:**\n• A partir de 100 rolos/mês: 15% desconto\n• A partir de 500 rolos/mês: 25% desconto\n\n🏨 **Hotéis e Restaurantes:**\n• Preços especiais por volume\n• Entrega programada mensal\n\n📞 **Contacto comercial:** vendas@papercare.pt\n📲 WhatsApp: +351 912 345 678"
+      buttons:
+        - title: "💰 Ver Preços"
+          payload: "preços"
+        - title: "🛒 Onde Comprar"
+          payload: "onde comprar"
+        - title: "🕐 Horário Atendimento"
+          payload: "horario atendimento"
+
+  utter_despedida:
+    - text: "Até logo! 👋 Obrigado por escolher PaperCare. Volte sempre que precisar de ajuda com os nossos produtos! 😊\n\n🧻 **PaperCare** - Qualidade que se sente!"
+
+  utter_ajuda_geral:
+    - text: "📋 **Posso ajudar-te com estas informações:**\n\n🧻 **Produtos:**\n• Tipos de papel higiénico (1, 2, 3 folhas)\n• Qualidade e resistência\n• Informações técnicas\n\n💰 **Comercial:**\n• Preços e descontos\n• Onde comprar\n• Descontos para empresas\n\n🌱 **Sustentabilidade:**\n• Certificações ambientais\n• Processo eco-friendly\n\n🔧 **Suporte:**\n• Reclamações e garantias\n• Horários de atendimento\n• Contactos\n\n**Pergunta-me qualquer coisa sobre estes temas!** 😊"
+      buttons:
+        - title: "🧻 Ver Produtos"
+          payload: "tipos de papel"
+        - title: "💰 Ver Preços"
+          payload: "preços"
+        - title: "🌱 Sustentabilidade"
+          payload: "sustentabilidade"
+
+  utter_porque_idioma_errado:
+    - text: "Desculpe pela confusão! 😅 Vou responder sempre em português. Sou o assistente da PaperCare e estou aqui para ajudar com informações sobre os nossos produtos de papel higiénico.\n\nO que gostaria de saber?"
+      buttons:
+        - title: "🧻 Produtos"
+          payload: "tipos de papel"
+        - title: "💰 Preços"
+          payload: "preços"
+        - title: "❓ Menu Ajuda"
+          payload: "ajuda"
+
+  utter_sou_bot:
+    - text: "Sou um assistente virtual da PaperCare! 🤖 Estou aqui para ajudar com informações sobre os nossos produtos de papel higiénico de qualidade. Como posso ajudar?"
+      buttons:
+        - title: "� Ver Produtos"
+          payload: "tipos de papel"
+        - title: "❓ O que posso perguntar?"
+          payload: "ajuda"
+
+  utter_default:
+    - text: "Desculpe, não entendi bem a sua pergunta. 🤔\n\nPosso ajudar com:\n• 🧻 Tipos de papel higiénico\n• 💰 Preços e onde comprar\n• 🌱 Qualidade e sustentabilidade\n• 🔧 Suporte e reclamações\n\nPode reformular a pergunta ou escolher um dos temas acima?"
+      buttons:
+        - title: "🧻 Produtos"
+          payload: "tipos de papel"
+        - title: "💰 Preços"
+          payload: "preços"
+        - title: "❓ Ver Menu"
+          payload: "ajuda"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

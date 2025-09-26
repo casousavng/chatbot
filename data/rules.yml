@@ -1,0 +1,31 @@
+version: "3.1"
+rules:
+- rule: Dizer olá sempre
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+
+- rule: Despedir sempre
+  steps:
+  - intent: despedida
+  - action: utter_despedida
+
+- rule: Responder desafio bot
+  steps:
+  - intent: bot_challenge
+  - action: utter_sou_bot
+
+- rule: Ajuda geral sempre
+  steps:
+  - intent: ajuda_geral
+  - action: utter_ajuda_geral
+
+- rule: Correção de idioma sempre
+  steps:
+  - intent: porque_idioma_errado
+  - action: utter_porque_idioma_errado
+
+- rule: Fallback para resposta padrão
+  steps:
+  - intent: nlu_fallback
+  - action: utter_default

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot Local</title>
+  <script src="https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.js"></script>
+</head>
+<body>
+  <div id="webchat"></div>
+  <script>
+    WebChat.default.init({
+      selector: "#webchat",
+      initPayload: "/saudacao",
+      socketUrl: "http://localhost:5005",
+      socketPath: "/socket.io/",
+      title: "Assistente IA Local",
+      subtitle: "Rodando 100% local"
+    });
+  </script>
+</body>
+</html>

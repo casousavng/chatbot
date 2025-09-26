@@ -1,0 +1,121 @@
+version: "3.1"
+stories:
+- story: saudacao basica
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+
+- story: pergunta sobre tipos de papel
+  steps:
+  - intent: tipos_papel
+  - action: utter_tipos_papel
+
+- story: pergunta sobre qualidade
+  steps:
+  - intent: qualidade_papel
+  - action: utter_qualidade_papel
+
+- story: pergunta sobre sustentabilidade
+  steps:
+  - intent: sustentabilidade
+  - action: utter_sustentabilidade
+
+- story: pergunta sobre precos
+  steps:
+  - intent: precos
+  - action: utter_precos
+
+- story: pergunta onde comprar
+  steps:
+  - intent: onde_comprar
+  - action: utter_onde_comprar
+
+- story: fluxo de reclamacao
+  steps:
+  - intent: reclamacao
+  - action: utter_reclamacao
+
+- story: garantia
+  steps:
+  - intent: garantia
+  - action: utter_garantia
+
+- story: informacoes tecnicas
+  steps:
+  - intent: info_tecnica
+  - action: utter_info_tecnica
+
+- story: desconto empresas
+  steps:
+  - intent: empresa_desconto
+  - action: utter_empresa_desconto
+
+- story: horario atendimento
+  steps:
+  - intent: horario_atendimento
+  - action: utter_horario_atendimento
+
+- story: despedida
+  steps:
+  - intent: despedida
+  - action: utter_despedida
+
+- story: desafio bot
+  steps:
+  - intent: bot_challenge
+  - action: utter_sou_bot
+
+- story: fluxo completo produto
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: tipos_papel
+  - action: utter_tipos_papel
+  - intent: qualidade_papel
+  - action: utter_qualidade_papel
+  - intent: precos
+  - action: utter_precos
+
+- story: fluxo problema e solucao
+  steps:
+  - intent: reclamacao
+  - action: utter_reclamacao
+  - intent: garantia
+  - action: utter_garantia
+  - intent: horario_atendimento
+  - action: utter_horario_atendimento
+
+- story: fluxo compra
+  steps:
+  - intent: precos
+  - action: utter_precos
+  - intent: onde_comprar
+  - action: utter_onde_comprar
+  - intent: empresa_desconto
+  - action: utter_empresa_desconto
+
+- story: fluxo sustentabilidade
+  steps:
+  - intent: sustentabilidade
+  - action: utter_sustentabilidade
+  - intent: info_tecnica
+  - action: utter_info_tecnica
+
+- story: ajuda geral
+  steps:
+  - intent: ajuda_geral
+  - action: utter_ajuda_geral
+
+- story: correcao idioma
+  steps:
+  - intent: porque_idioma_errado
+  - action: utter_porque_idioma_errado
+
+- story: fluxo com ajuda
+  steps:
+  - intent: saudacao
+  - action: utter_saudacao
+  - intent: ajuda_geral
+  - action: utter_ajuda_geral
+  - intent: tipos_papel
+  - action: utter_tipos_papel

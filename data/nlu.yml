@@ -1,0 +1,473 @@
+version: "3.1"
+nlu:
+- intent: saudacao
+  examples: |
+    - olá
+    - oi
+    - bom dia
+    - boa tarde
+    - boa noite
+    - como estás?
+    - tudo bem?
+    - e aí?
+    - ola
+    - salve
+    - como vai?
+    - tudo bom?
+    - oi tudo bem?
+    - bom dia como vai?
+    - boa tarde tudo bem?
+    - olá como está?
+    - oi como você está?
+    - hola
+    - buenos días
+    - buenas tardes
+    - buenas noches
+    - ¿cómo estás?
+    - ¿todo bien?
+    - ¿qué tal?
+    - hola qué tal
+    - buenos días cómo está
+    - buenas tardes todo bien
+    - hello
+    - hi
+    - good morning
+    - good afternoon
+    - good evening
+    - how are you?
+    - hey there
+    - hi there
+    - hello how are you
+    - good morning how are you
+    - hi how are you doing
+
+- intent: despedida
+  examples: |
+    - adeus
+    - até logo
+    - tchau
+    - até amanhã
+    - obrigado
+    - obrigada
+    - valeu
+    - falou
+    - adiós
+    - hasta luego
+    - chau
+    - hasta mañana
+    - gracias
+    - muchas gracias
+    - goodbye
+    - bye
+    - see you later
+    - thank you
+    - thanks
+    - see you
+
+- intent: tipos_papel
+  examples: |
+    - que tipos de papel higiénico vocês têm?
+    - quais os tipos de papel?
+    - que papel vocês vendem?
+    - que produtos vocês têm?
+    - tipos de papel higiénico
+    - variedades de papel
+    - fala-me sobre o produto
+    - diz-me sobre os produtos
+    - como é o vosso produto?
+    - quais são os vossos produtos?
+    - o que vendem?
+    - mostrem-me os produtos
+    - que papel têm disponível?
+    - 1 folha
+    - 2 folhas  
+    - 3 folhas
+    - papel simples
+    - papel duplo
+    - papel triplo
+    - ¿qué tipos de papel higiénico tienen?
+    - ¿cuáles son los tipos de papel?
+    - ¿qué papel venden?
+    - ¿qué productos tienen?
+    - tipos de papel higiénico
+    - variedades
+    - háblame del producto
+    - cuéntame sobre los productos
+    - ¿cómo es su producto?
+    - ¿cuáles son sus productos?
+    - ¿qué venden?
+    - muéstrame los productos
+    - 1 hoja
+    - 2 hojas
+    - 3 hojas
+    - papel simple
+    - papel doble
+    - papel triple
+    - what types of toilet paper do you have?
+    - what kinds of paper do you sell?
+    - what products do you have?
+    - toilet paper types
+    - paper varieties
+    - tell me about the product
+    - tell me about your products
+    - what is your product like?
+    - what are your products?
+    - what do you sell?
+    - show me the products
+    - 1 ply
+    - 2 ply
+    - 3 ply
+    - single ply
+    - double ply
+    - triple ply
+
+- intent: qualidade_papel
+  examples: |
+    - o papel é resistente?
+    - é de boa qualidade?
+    - é macio?
+    - é absorvente?
+    - papel forte
+    - qualidade do papel
+    - resistência
+    - textura
+    - conforto
+    - suavidade
+    - é hipoalergênico?
+    - ¿el papel es resistente?
+    - ¿es de buena calidad?
+    - ¿es suave?
+    - ¿es absorbente?
+    - papel fuerte
+    - calidad del papel
+    - resistencia
+    - textura
+    - comodidad
+    - suavidad
+    - ¿es hipoalergénico?
+    - is the paper strong?
+    - is it good quality?
+    - is it soft?
+    - is it absorbent?
+    - paper strength
+    - quality
+    - texture
+    - comfort
+    - softness
+    - is it hypoallergenic?
+
+- intent: sustentabilidade
+  examples: |
+    - é ecológico?
+    - é sustentável?
+    - meio ambiente
+    - reciclado
+    - certificação FSC
+    - plantam árvores?
+    - embalagem reciclável
+    - sem cloro
+    - eco-friendly
+    - ¿es ecológico?
+    - ¿es sustentable?
+    - medio ambiente
+    - reciclado
+    - certificación FSC
+    - ¿plantan árboles?
+    - empaque reciclable
+    - sin cloro
+    - ecológico
+    - is it eco-friendly?
+    - is it sustainable?
+    - environment
+    - recycled
+    - FSC certification
+    - do you plant trees?
+    - recyclable packaging
+    - chlorine-free
+
+- intent: precos
+  examples: |
+    - qual é o preço?
+    - quanto custa?
+    - preço do papel
+    - valores
+    - custo
+    - desconto
+    - promoção
+    - preços especiais
+    - ¿cuál es el precio?
+    - ¿cuánto cuesta?
+    - precio del papel
+    - valores
+    - costo
+    - descuento
+    - promoción
+    - precios especiales
+    - what is the price?
+    - how much does it cost?
+    - paper price
+    - cost
+    - discount
+    - promotion
+    - special prices
+    - quanto que é
+    - cuánto sale
+    - how much is it
+
+- intent: onde_comprar
+  examples: |
+    - onde posso comprar?
+    - onde vendem?
+    - pontos de venda
+    - lojas
+    - supermercados
+    - online
+    - entrega
+    - entrega ao domicílio
+    - ¿dónde puedo comprar?
+    - ¿dónde venden?
+    - puntos de venta
+    - tiendas
+    - supermercados
+    - online
+    - entrega
+    - entrega a domicilio
+    - where can I buy?
+    - where do you sell?
+    - sales points
+    - stores
+    - supermarkets
+    - online
+    - delivery
+    - home delivery
+
+- intent: reclamacao
+  examples: |
+    - quero fazer uma reclamação
+    - tenho uma queixa
+    - produto defeituoso
+    - não funcionou
+    - qualidade ruim
+    - papel rasgou
+    - não absorve
+    - quiero hacer una reclamación
+    - tengo una queja
+    - producto defectuoso
+    - no funcionó
+    - mala calidad
+    - papel se rompió
+    - no absorbe
+    - I want to make a complaint
+    - I have a complaint
+    - defective product
+    - didn't work
+    - poor quality
+    - paper tore
+    - doesn't absorb
+
+- intent: garantia
+  examples: |
+    - têm garantia?
+    - que garantia oferecem?
+    - política de devolução
+    - reembolso
+    - troca
+    - substituição
+    - ¿tienen garantía?
+    - ¿qué garantía ofrecen?
+    - política de devolución
+    - reembolso
+    - cambio
+    - sustitución
+    - do you have warranty?
+    - what warranty do you offer?
+    - return policy
+    - refund
+    - exchange
+    - replacement
+
+- intent: horario_atendimento
+  examples: |
+    - qual é o horário de atendimento?
+    - que horas funcionam?
+    - horário de funcionamento
+    - quando posso ligar?
+    - atendimento 24h?
+    - ¿cuál es el horario de atención?
+    - ¿qué horas funcionan?
+    - horario de funcionamiento
+    - ¿cuándo puedo llamar?
+    - ¿atención 24h?
+    - what are the service hours?
+    - what hours are you open?
+    - operating hours
+    - when can I call?
+    - 24h service?
+
+- intent: info_tecnica
+  examples: |
+    - quantos metros tem cada rolo?
+    - especificações técnicas
+    - composição do papel
+    - medidas
+    - perfurações
+    - biodegradável
+    - sistema séptico
+    - ¿cuántos metros tiene cada rollo?
+    - especificaciones técnicas
+    - composición del papel
+    - medidas
+    - perforaciones
+    - biodegradable
+    - sistema séptico
+    - how many meters per roll?
+    - technical specifications
+    - paper composition
+    - measurements
+    - perforations
+    - biodegradable
+    - septic system
+
+- intent: empresa_desconto
+  examples: |
+    - desconto para empresas
+    - preços para empresas
+    - compra em quantidade
+    - desconto bulk
+    - vendas corporativas
+    - descuento para empresas
+    - precios para empresas
+    - compra en cantidad
+    - descuento por volumen
+    - ventas corporativas
+    - company discount
+    - business prices
+    - bulk purchase
+    - volume discount
+    - corporate sales
+
+- intent: detectar_idioma
+  examples: |
+    - português
+    - eu falo português
+    - prefiro português
+    - español
+    - hablo español
+    - prefiero español
+    - english
+    - I speak english
+    - I prefer english
+
+- intent: ajuda_geral
+  examples: |
+    - o que te posso perguntar?
+    - que perguntas posso fazer?
+    - ajuda
+    - help
+    - como funciona?
+    - o que fazes?
+    - que informações tens?
+    - diz-me o que te posso perguntar
+    - que posso perguntar?
+    - em que me podes ajudar?
+    - ¿qué puedo preguntar?
+    - ¿qué preguntas puedo hacer?
+    - ayuda
+    - ¿cómo funciona?
+    - ¿qué haces?
+    - ¿qué información tienes?
+    - dime qué puedo preguntar
+    - ¿en qué me puedes ayudar?
+    - what can I ask you?
+    - what questions can I ask?
+    - help
+    - how does it work?
+    - what do you do?
+    - what information do you have?
+    - tell me what I can ask
+    - what can you help me with?
+    - menu
+    - opções
+    - opciones
+    - options
+
+- intent: porque_idioma_errado
+  examples: |
+    - porque respondes em inglês?
+    - porque falas em espanhol?
+    - quero português
+    - fala português
+    - não percebo inglês
+    - responde em português
+    - ¿por qué respondes en inglés?
+    - ¿por qué hablas en portugués?
+    - quiero español
+    - habla español
+    - no entiendo inglés
+    - responde en español
+    - why do you answer in Portuguese?
+    - why do you speak in Spanish?
+    - I want English
+    - speak English
+    - I don't understand Spanish
+    - answer in English
+    - mudança de idioma
+    - cambio de idioma
+    - language change
+
+- intent: bot_challenge
+  examples: |
+    - você é um robô?
+    - você é humano?
+    - é um bot?
+    - assistente virtual
+    - chatbot
+    - ¿eres un robot?
+    - ¿eres humano?
+    - ¿es un bot?
+    - asistente virtual
+    - are you a bot?
+    - are you a human?
+    - are you real?
+    - virtual assistant
+
+- lookup: tipos_folhas
+  examples: |
+    - 1 folha
+    - 2 folhas
+    - 3 folhas
+    - 1 hoja
+    - 2 hojas
+    - 3 hojas
+    - 1 ply
+    - 2 ply
+    - 3 ply
+    - simples
+    - duplo
+    - triplo
+    - simple
+    - doble
+    - triple
+
+- lookup: texturas
+  examples: |
+    - macio
+    - ultra-macio
+    - extra-absorvente
+    - perfumado
+    - suave
+    - ultra-suave
+    - extra-absorbente
+    - perfumado
+    - soft
+    - ultra-soft
+    - extra-absorbent
+    - scented
+
+- regex: telefone
+  examples: |
+    - \d{9,15}
+
+- regex: email
+  examples: |
+    - [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistente Virtual Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .chat-container {
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .chat-header h2 {
+            margin-bottom: 5px;
+        }
+        
+        .chat-header .status {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        #chat { 
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-content {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+        
+        .message.user .message-content {
+            background: #667eea;
+            color: white;
+            margin-right: 10px;
+        }
+        
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            margin-left: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .avatar.user {
+            background: #667eea;
+        }
+        
+        .avatar.bot {
+            background: #28a745;
+        }
+        
+        .input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #input { 
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        #input:focus {
+            border-color: #667eea;
+        }
+        
+        #send { 
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        #send:hover {
+            background: #5a6fd8;
+        }
+        
+        #send:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .typing-indicator {
+            display: none;
+            margin-bottom: 15px;
+        }
+        
+        .typing-indicator .message-content {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .typing-dots {
+            display: inline-block;
+        }
+        
+        .typing-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.3;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+        
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .language-selector select {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            padding: 5px 10px;
+            outline: none;
+        }
+        
+        .admin-link {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        
+        .admin-link:hover {
+            background: rgba(0,0,0,0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <select id="language-select">
+            <option value="pt">🇵🇹 Português</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="en">🇬🇧 English</option>
+        </select>
+    </div>
+    
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Assistente Virtual</h2>
+            <div class="status" id="status">🟢 Online - Detecta idioma automaticamente</div>
+        </div>
+        
+        <div id="chat">
+            <div class="message bot">
+                <div class="avatar bot">🤖</div>
+                <div class="message-content">
+                    Olá! 👋 Sou o seu assistente virtual inteligente. Posso ajudá-lo em português, español ou English. Como posso ajudá-lo hoje?
+                </div>
+            </div>
+        </div>
+        
+        <div class="typing-indicator" id="typing">
+            <div class="avatar bot">🤖</div>
+            <div class="message-content">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" id="input" placeholder="Digite sua mensagem...">
+            <button id="send">➤</button>
+        </div>
+    </div>
+    
+    <a href="/admin" class="admin-link" target="_blank">📊 Admin Dashboard</a>
+
+    <script>
+        const chat = document.getElementById("chat");
+        const input = document.getElementById("input");
+        const send = document.getElementById("send");
+        const typing = document.getElementById("typing");
+        const status = document.getElementById("status");
+        const languageSelect = document.getElementById("language-select");
+        
+        // Gerar ID único para a sessão
+        const sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        
+        let isTyping = false;
+        
+        // Atualizar placeholder baseado no idioma
+        languageSelect.addEventListener('change', function() {
+            const lang = this.value;
+            const placeholders = {
+                'pt': 'Digite sua mensagem...',
+                'es': 'Escriba su mensaje...',
+                'en': 'Type your message...'
+            };
+            input.placeholder = placeholders[lang] || placeholders['pt'];
+        });
+        
+        function showTyping() {
+            if (!isTyping) {
+                isTyping = true;
+                typing.style.display = 'flex';
+                chat.scrollTop = chat.scrollHeight;
+            }
+        }
+        
+        function hideTyping() {
+            isTyping = false;
+            typing.style.display = 'none';
+        }
+        
+        function addMessage(content, isUser = false, isError = false) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const avatar = document.createElement("div");
+            avatar.className = `avatar ${isUser ? 'user' : 'bot'}`;
+            avatar.textContent = isUser ? '👤' : '🤖';
+            
+            const messageContent = document.createElement("div");
+            messageContent.className = "message-content";
+            
+            if (isError) {
+                messageContent.style.background = '#dc3545';
+                messageContent.style.color = 'white';
+            }
+            
+            // Suporte para mensagens com botões ou outros elementos
+            if (typeof content === 'object' && content.buttons) {
+                messageContent.innerHTML = content.text;
+                // Adicionar botões se necessário
+                if (content.buttons && content.buttons.length > 0) {
+                    const buttonsDiv = document.createElement("div");
+                    buttonsDiv.style.marginTop = "10px";
+                    content.buttons.forEach(button => {
+                        const btn = document.createElement("button");
+                        btn.textContent = button.title;
+                        btn.style.margin = "2px";
+                        btn.style.padding = "5px 10px";
+                        btn.style.border = "1px solid #ddd";
+                        btn.style.borderRadius = "15px";
+                        btn.style.background = "white";
+                        btn.style.cursor = "pointer";
+                        btn.onclick = () => {
+                            input.value = button.payload;
+                            sendMessage();
+                        };
+                        buttonsDiv.appendChild(btn);
+                    });
+                    messageContent.appendChild(buttonsDiv);
+                }
+            } else {
+                messageContent.textContent = content;
+            }
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chat.appendChild(messageDiv);
+            
+            chat.scrollTop = chat.scrollHeight;
+        }
+        
+        async function sendMessage() {
+            const msg = input.value.trim();
+            if (!msg || isTyping) return;
+            
+            // Desabilitar input
+            input.disabled = true;
+            send.disabled = true;
+            
+            // Mostra mensagem do usuário
+            addMessage(msg, true);
+            input.value = "";
+            
+            // Mostrar indicador de digitação
+            showTyping();
+            
+            try {
+                // Envia para Flask/Rasa
+                const res = await fetch("/send_message", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ 
+                        message: msg,
+                        sender_id: sessionId
+                    })
+                });
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}`);
+                }
+                
+                const data = await res.json();
+                
+                hideTyping();
+                
+                if (data.status === 'success' && data.messages.length > 0) {
+                    // Mostrar respostas do bot com delay realista
+                    for (let i = 0; i < data.messages.length; i++) {
+                        setTimeout(() => {
+                            addMessage(data.messages[i]);
+                        }, i * 500);
+                    }
+                    status.innerHTML = "🟢 Online - Conectado ao assistente";
+                } else {
+                    addMessage("Desculpe, não consegui processar sua mensagem. Tente novamente.", false, true);
+                }
+                
+            } catch (error) {
+                hideTyping();
+                console.error('Erro:', error);
+                addMessage("❌ Erro de conexão. Verifique se o serviço está ativo.", false, true);
+                status.innerHTML = "🔴 Offline - Erro de conexão";
+            } finally {
+                // Reabilitar input
+                input.disabled = false;
+                send.disabled = false;
+                input.focus();
+            }
+        }
+        
+        send.onclick = sendMessage;
+        
+        // Permitir enviar com Enter
+        input.addEventListener("keypress", function(e) {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // Verificar status do serviço periodicamente
+        setInterval(async () => {
+            try {
+                const response = await fetch('/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.services.rasa === 'ok') {
+                        status.innerHTML = "🟢 Online - Todos os serviços funcionando";
+                    } else {
+                        status.innerHTML = "🟡 Parcial - Rasa offline";
+                    }
+                } else {
+                    status.innerHTML = "🔴 Offline - Serviços indisponíveis";
+                }
+            } catch {
+                status.innerHTML = "🔴 Offline - Erro de conexão";
+            }
+        }, 30000); // Verificar a cada 30 segundos
+        
+        // Focar no input ao carregar
+        input.focus();
+    </script>
+</body>
+</html>
