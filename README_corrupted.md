@@ -1,556 +1,280 @@
-# 🧻 Chatbot PaperCare# 🧻 Chatbot PaperCare - Assistente de Papel Higiénico# � Chatbot PaperCare - Assistente de Papel Higiénico
+# 🧻 Chatbot PaperCare - Assistente de Papel Higiénico# � Chatbot PaperCare - Assistente de Papel Higiénico
 
 
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
-
-![Rasa](https://img.shields.io/badge/Rasa-3.6.0+-orange.svg)
-
-![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
-
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 
 ![Rasa](https://img.shields.io/badge/Rasa-3.6.0+-orange.svg)![Rasa](https://img.shields.io/badge/Rasa-3.6.0+-orange.svg)
 
-Um chatbot inteligente especializado em produtos de papel higiénico, desenvolvido com Rasa Framework e Flask. Fornece informações sobre produtos, preços, sustentabilidade e suporte ao cliente em português.
-
 ![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)
-
-## 🚀 Início Rápido
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-```bash
 
-# 1. Clonar o repositório
 
-git clone https://github.com/casousavng/chatbot.git
-
-cd chatbotUm chatbot inteligente especializado em produtos de papel higiénico, desenvolvido com Rasa Framework e Flask. O bot fornece informações detalhadas sobre produtos, preços, sustentabilidade, pontos de venda e suporte ao cliente, tudo em português.Um chatbot inteligente especializado em produtos de papel higiénico, desenvolvido com Rasa Framework e Flask. O bot fornece informações detalhadas sobre produtos, preços, sustentabilidade, pontos de venda e suporte ao cliente, tudo em português.
+Um chatbot inteligente especializado em produtos de papel higiénico, desenvolvido com Rasa Framework e Flask. O bot fornece informações detalhadas sobre produtos, preços, sustentabilidade, pontos de venda e suporte ao cliente, tudo em português.Um chatbot inteligente especializado em produtos de papel higiénico, desenvolvido com Rasa Framework e Flask. O bot fornece informações detalhadas sobre produtos, preços, sustentabilidade, pontos de venda e suporte ao cliente, tudo em português.
 
 
 
-# 2. Criar ambiente virtual
-
-python -m venv venv
-
-source venv/bin/activate  # Linux/macOS## 📋 Índice## 📋 Índice
-
-# ou venv\Scripts\activate  # Windows
+## 📋 Índice## 📋 Índice
 
 
 
-# 3. Instalar dependências
+- [Funcionalidades](#-funcionalidades)- [Funcionalidades](#-funcionalidades)
 
-pip install -r requirements.txt- [Funcionalidades](#-funcionalidades)- [Funcionalidades](#-funcionalidades)
-
-
-
-# 4. Treinar o modelo- [Tecnologias Utilizadas](#-tecnologias-utilizadas)- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-
-rasa train
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 
 - [Pré-requisitos](#-pré-requisitos)- [Pré-requisitos](#-pré-requisitos)
 
-# 5. Iniciar servidores
-
-# Terminal 1:- [Instalação](#-instalação)- [Instalação](#-instalação)
-
-rasa run --enable-api --cors "*" --port 5005
+- [Instalação](#-instalação)- [Instalação](#-instalação)
 
 - [Configuração](#-configuração)- [Configuração](#-configuração)
 
-# Terminal 2:
+- [Execução](#-execução)- [Execução](#-execução)
 
-python app.py- [Execução](#-execução)- [Execução](#-execução)
-
-
-
-# 6. Aceder: http://localhost:5020- [Utilização](#-utilização)- [Utilização](#-utilização)
-
-```
+- [Utilização](#-utilização)- [Utilização](#-utilização)
 
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 
-## ✨ Funcionalidades
-
 - [API Endpoints](#-api-endpoints)### ✅ Reencaminhamento Comercial Inteligente
 
-- 🧻 **Informações de Produtos**: Tipos de papel higiénico (1, 2, 3 folhas)
+- [Treinar o Modelo](#-treinar-o-modelo)- **Roteamento por produto/mercado**: CRM, ERP, Analytics
 
-- 💰 **Preços**: Tabela de preços competitivos e ofertas- [Treinar o Modelo](#-treinar-o-modelo)- **Roteamento por produto/mercado**: CRM, ERP, Analytics
+- [Troubleshooting](#-troubleshooting)- **Especialistas específicos** por combinação produto-mercado
 
-- 🌱 **Sustentabilidade**: Certificações ambientais e processo eco-friendly
-
-- 🛒 **Pontos de Venda**: Onde comprar (online e lojas físicas)- [Troubleshooting](#-troubleshooting)- **Especialistas específicos** por combinação produto-mercado
-
-- 🏢 **Descontos Corporativos**: Ofertas especiais para empresas
-
-- 🕐 **Suporte ao Cliente**: Horários de atendimento e contactos- [Contribuição](#-contribuição)- **Fallback inteligente** para especialistas gerais
-
-- ✅ **Garantias**: Política de qualidade e trocas
+- [Contribuição](#-contribuição)- **Fallback inteligente** para especialistas gerais
 
 - [Licença](#-licença)- **Matriz de roteamento configurável**
 
-## 🛠 Tecnologias
 
 
+## ✨ Funcionalidades### ✅ Validação de Regras Comerciais
 
-- **[Rasa 3.6+](https://rasa.com/)** - Framework de conversação e NLU
-
-- **[Flask 2.0+](https://flask.palletsprojects.com/)** - Servidor web Python## ✨ Funcionalidades### ✅ Validação de Regras Comerciais
-
-- **[SQLite](https://sqlite.org/)** - Base de dados para conversas
-
-- **Python 3.9+** - Linguagem de programação- **Validação de email** (formato RFC compliant)
-
-- **HTML/CSS/JS** - Interface web
+- **Validação de email** (formato RFC compliant)
 
 ### 🎯 Intents Principais- **Validação de telefone** (9-15 dígitos)
 
-## 📋 Pré-requisitos
-
 - **Informações de Produtos**: Tipos de papel higiénico (1, 2, 3 folhas)- **Validação de nome completo** (mínimo 2 palavras)
 
-- **Python 3.9+** instalado
-
-- **pip** (package manager)- **Qualidade e Resistência**: Especificações técnicas detalhadas- **Validação de empresa** (não vazio)
-
-- **Git** (opcional mas recomendado)
+- **Qualidade e Resistência**: Especificações técnicas detalhadas- **Validação de empresa** (não vazio)
 
 - **Preços e Ofertas**: Tabela de preços competitivos- **Formulário interativo** com validação em tempo real
 
-Verificar instalações:
+- **Sustentabilidade**: Certificações ambientais e processo eco-friendly
 
-```bash- **Sustentabilidade**: Certificações ambientais e processo eco-friendly
-
-python --version  # Deve mostrar 3.9+
-
-pip --version- **Pontos de Venda**: Onde comprar (online e físico)### ✅ Sistema de KPIs Completo
-
-```
+- **Pontos de Venda**: Onde comprar (online e físico)### ✅ Sistema de KPIs Completo
 
 - **Descontos Corporativos**: Ofertas para empresas- **Tempo médio de resposta** (calculado automaticamente)
 
-## 📦 Instalação Detalhada
-
 - **Suporte ao Cliente**: Horários, contactos e reclamações- **Taxa de conversão de vendas** (conversas → leads)
 
-### 1. Clonar o Projeto
+- **Garantias**: Política de qualidade e trocas- **Satisfação do cliente** (escala 1-5 estrelas)
 
-```bash- **Garantias**: Política de qualidade e trocas- **Satisfação do cliente** (escala 1-5 estrelas)
-
-git clone https://github.com/casousavng/chatbot.git
-
-cd chatbot- **Redução de reclamações** (categorização automática)
-
-```
+- **Redução de reclamações** (categorização automática)
 
 ### 🌟 Características Técnicas- **Dashboard administrativo** com gráficos e tabelas
 
-### 2. Configurar Ambiente Python
+- ✅ **Respostas 100% em Português**: Eliminação de confusão multilíngue
 
-```bash- ✅ **Respostas 100% em Português**: Eliminação de confusão multilíngue
+- ✅ **Interface Web Responsiva**: Frontend moderno com HTML/CSS/JavaScript## 🚀 Instalação e Configuração
 
-# Criar ambiente virtual
+- ✅ **Dashboard KPI**: Métricas e analytics do chatbot
 
-python -m venv venv- ✅ **Interface Web Responsiva**: Frontend moderno com HTML/CSS/JavaScript## 🚀 Instalação e Configuração
+- ✅ **Armazenamento de Conversas**: SQLite database para tracking### 1. Pré-requisitos
 
-
-
-# Ativar ambiente- ✅ **Dashboard KPI**: Métricas e analytics do chatbot
-
-# No macOS/Linux:
-
-source venv/bin/activate- ✅ **Armazenamento de Conversas**: SQLite database para tracking### 1. Pré-requisitos
-
-
-
-# No Windows:- ✅ **API RESTful**: Integração flexível com outros sistemas```bash
-
-venv\Scripts\activate
+- ✅ **API RESTful**: Integração flexível com outros sistemas```bash
 
 - ✅ **Botões Interativos**: Navegação guiada para melhor UX# Python 3.8+
 
-# Verificar ativação (deve aparecer (venv) no prompt)
+python --version
 
-```python --version
+## 🛠 Tecnologias Utilizadas
 
-
-
-### 3. Instalar Dependências## 🛠 Tecnologias Utilizadas
-
-```bash
-
-# Atualizar pip# Node.js (opcional, para desenvolvimento)
-
-pip install --upgrade pip
+# Node.js (opcional, para desenvolvimento)
 
 ### Backendnode --version
 
-# Instalar dependências do projeto
+- **[Rasa Framework 3.6+](https://rasa.com/)**: Motor de conversação e NLU```
 
-pip install -r requirements.txt- **[Rasa Framework 3.6+](https://rasa.com/)**: Motor de conversação e NLU```
+- **[Flask 2.0+](https://flask.palletsprojects.com/)**: Web framework Python
 
+- **[SQLite](https://sqlite.org/)**: Base de dados para tracking### 2. Instalar Dependências
 
+- **[Python 3.9+](https://python.org/)**: Linguagem de programação```bash
 
-# Verificar instalação do Rasa- **[Flask 2.0+](https://flask.palletsprojects.com/)**: Web framework Python
-
-rasa --version
-
-```- **[SQLite](https://sqlite.org/)**: Base de dados para tracking### 2. Instalar Dependências
-
-
-
-### 4. Treinar o Modelo- **[Python 3.9+](https://python.org/)**: Linguagem de programação```bash
-
-```bash
-
-# Primeira vez ou após mudanças nos dados# Navegar para o diretório do projeto
-
-rasa train
+# Navegar para o diretório do projeto
 
 ### Frontendcd /Users/andresousa/Desktop/chatbot
 
-# Verificar modelo criado
-
-ls models/- **HTML5**: Estrutura da interface
-
-```
+- **HTML5**: Estrutura da interface
 
 - **CSS3**: Estilização responsiva# Instalar dependências Python
 
-## 🏃‍♂️ Como Executar
-
 - **JavaScript (Vanilla)**: Interactividadepip install -r requirements.txt
 
-### Método 1: Manual (Recomendado para desenvolvimento)
 
 
+### Machine Learning# Instalar langdetect se não estiver incluído
 
-**Terminal 1 - Servidor Rasa:**
-
-```bash### Machine Learning# Instalar langdetect se não estiver incluído
-
-source venv/bin/activate
-
-rasa run --enable-api --cors "*" --port 5005- **DIET Classifier**: Classificação de intents e entidadespip install langdetect
-
-```
+- **DIET Classifier**: Classificação de intents e entidadespip install langdetect
 
 - **TED Policy**: Gestão de diálogo
 
-**Terminal 2 - Servidor Flask:**
+- **Rule Policy**: Regras de conversação# Instalar Rasa se não estiver instalado
 
-```bash- **Rule Policy**: Regras de conversação# Instalar Rasa se não estiver instalado
-
-source venv/bin/activate
-
-python app.py- **Memoization Policy**: Optimização de respostaspip install rasa[full]
+- **Memoization Policy**: Optimização de respostaspip install rasa[full]
 
 ```
 
-```
+## 📋 Pré-requisitos
 
-### Método 2: Background
+### 3. Treinar o Modelo
 
-```bash## 📋 Pré-requisitos
+Antes de começar, certifique-se que tem instalado:```bash
 
-source venv/bin/activate
+# Treinar o modelo Rasa com as novas funcionalidades
 
-nohup rasa run --enable-api --cors "*" --port 5005 > rasa.log 2>&1 &### 3. Treinar o Modelo
+### Essenciaisrasa train
 
-python app.py
-
-```Antes de começar, certifique-se que tem instalado:```bash
-
-
-
-### Verificar se Está Funcionando# Treinar o modelo Rasa com as novas funcionalidades
-
-```bash
-
-# Testar Rasa### Essenciaisrasa train
-
-curl -X POST http://localhost:5005/webhooks/rest/webhook \
-
--H "Content-Type: application/json" \- **Python 3.9 ou superior** - [Download aqui](https://python.org/downloads/)
-
--d '{"sender": "test", "message": "olá"}'
+- **Python 3.9 ou superior** - [Download aqui](https://python.org/downloads/)
 
 - **pip** (normalmente incluído com Python)# Verificar se o modelo foi criado
 
-# Testar Flask
-
-curl http://localhost:5020- **Git** - [Download aqui](https://git-scm.com/)ls models/
+- **Git** - [Download aqui](https://git-scm.com/)ls models/
 
 ```
-
-```
-
-## 🎯 Como Usar
 
 ### Recomendado
 
-1. **Abrir navegador**: http://localhost:5020
-
-2. **Digitar mensagens** na caixa de chat- **pyenv** (para gestão de versões Python) - [Guia de instalação](https://github.com/pyenv/pyenv)### 4. Configurar Base de Dados
-
-3. **Usar botões** para navegação rápida
+- **pyenv** (para gestão de versões Python) - [Guia de instalação](https://github.com/pyenv/pyenv)### 4. Configurar Base de Dados
 
 - **Visual Studio Code** - [Download aqui](https://code.visualstudio.com/)```bash
 
-### Exemplos de Perguntas
+# O sistema criará automaticamente o banco SQLite
 
-- "Olá"# O sistema criará automaticamente o banco SQLite
+### Verificar Instalações# As tabelas serão criadas na primeira execução
 
-- "Que tipos de papel têm?"
-
-- "Qual é o preço?"### Verificar Instalações# As tabelas serão criadas na primeira execução
-
-- "É ecológico?"
-
-- "Onde posso comprar?"```bashpython kpi_dashboard.py
-
-- "Horário de atendimento?"
+```bashpython kpi_dashboard.py
 
 # Verificar Python```
 
-## 📁 Estrutura do Projeto
-
 python --version  # Deve mostrar 3.9+
 
-```
+## 🔧 Execução do Sistema
 
-chatbot/## 🔧 Execução do Sistema
+# Verificar pip
 
-├── actions/           # Ações customizadas do Rasa
-
-├── data/             # Dados de treino (NLU, stories, rules)# Verificar pip
-
-├── models/           # Modelos treinados
-
-├── templates/        # Interface web (HTML)pip --version### 1. Iniciar Servidor de Actions (Terminal 1)
-
-├── app.py           # Servidor Flask
-
-├── config.yml       # Configuração do Rasa```bash
-
-├── domain.yml       # Intents, entities e respostas
-
-├── requirements.txt # Dependências Python# Verificar Gitcd /Users/andresousa/Desktop/chatbot
-
-└── README.md        # Este arquivo
-
-```git --versionrasa run actions --port 5055
-
-
-
-## 🔄 Modificar o Chatbot``````
-
-
-
-### Adicionar Nova Pergunta/Intent
-
-
-
-1. **Editar `data/nlu.yml`**:## 🚀 Instalação### 2. Iniciar Servidor Rasa (Terminal 2)
-
-```yaml
-
-- intent: nova_pergunta```bash
-
-  examples: |
-
-    - exemplo de pergunta 1### 1. Clonar o Repositóriocd /Users/andresousa/Desktop/chatbot
-
-    - exemplo de pergunta 2
-
-``````bashrasa run --enable-api --cors "*" --port 5005
-
-
-
-2. **Editar `domain.yml`**:# Clonar o projeto```
-
-```yaml
-
-intents:git clone https://github.com/seu-usuario/chatbot-papercare.git
-
-  - nova_pergunta
-
-### 3. Iniciar Interface Web (Terminal 3)
-
-responses:
-
-  utter_nova_resposta:# Navegar para o diretório```bash
-
-    - text: "Sua resposta aqui"
-
-```cd chatbot-papercarecd /Users/andresousa/Desktop/chatbot
-
-
-
-3. **Treinar novamente**:```python app.py
+pip --version### 1. Iniciar Servidor de Actions (Terminal 1)
 
 ```bash
 
-rasa train```
+# Verificar Gitcd /Users/andresousa/Desktop/chatbot
+
+git --versionrasa run actions --port 5055
+
+``````
+
+
+
+## 🚀 Instalação### 2. Iniciar Servidor Rasa (Terminal 2)
+
+```bash
+
+### 1. Clonar o Repositóriocd /Users/andresousa/Desktop/chatbot
+
+```bashrasa run --enable-api --cors "*" --port 5005
+
+# Clonar o projeto```
+
+git clone https://github.com/seu-usuario/chatbot-papercare.git
+
+### 3. Iniciar Interface Web (Terminal 3)
+
+# Navegar para o diretório```bash
+
+cd chatbot-papercarecd /Users/andresousa/Desktop/chatbot
+
+```python app.py
 
 ```
 
 ### 2. Criar Ambiente Virtual
 
-### Modificar Resposta Existente
+```bash### 4. Acessar o Sistema
 
-1. Encontrar resposta em `domain.yml````bash### 4. Acessar o Sistema
+# Criar ambiente virtual- **Interface do Chatbot**: http://localhost:5000
 
-2. Alterar o texto
+python -m venv venv- **Dashboard Administrativo**: http://localhost:5000/admin
 
-3. Executar `rasa train`# Criar ambiente virtual- **Interface do Chatbot**: http://localhost:5000
+- **API de KPIs**: http://localhost:5000/kpis
 
-
-
-## 🐛 Problemas Comunspython -m venv venv- **Dashboard Administrativo**: http://localhost:5000/admin
-
-
-
-### "rasa: command not found"- **API de KPIs**: http://localhost:5000/kpis
-
-```bash
-
-# Verificar se ambiente virtual está ativo# Ativar o ambiente virtual- **Health Check**: http://localhost:5000/health
-
-source venv/bin/activate
+# Ativar o ambiente virtual- **Health Check**: http://localhost:5000/health
 
 # No macOS/Linux:
 
-# Reinstalar se necessário
-
-pip install rasasource venv/bin/activate## 📊 Monitoramento de KPIs
-
-```
+source venv/bin/activate## 📊 Monitoramento de KPIs
 
 
 
-### "Port already in use"
+# No Windows:### Dashboard Administrativo
 
-```bash# No Windows:### Dashboard Administrativo
+venv\Scripts\activateO dashboard fornece:
 
-# Encontrar processo na porta
+- **Métricas em tempo real**: Tempo de resposta, conversão, satisfação
 
-lsof -i :5005venv\Scripts\activateO dashboard fornece:
+# Verificar se está ativo (deve aparecer (venv) no prompt)- **Gráficos interativos**: Leads por produto e mercado
 
+```- **Tabelas dinâmicas**: Últimos leads e reclamações
 
-
-# Matar processo- **Métricas em tempo real**: Tempo de resposta, conversão, satisfação
-
-kill -9 [PID]
-
-```# Verificar se está ativo (deve aparecer (venv) no prompt)- **Gráficos interativos**: Leads por produto e mercado
-
-
-
-### Modelo não treina```- **Tabelas dinâmicas**: Últimos leads e reclamações
-
-```bash
-
-# Validar dados primeiro- **Auto-refresh**: Atualização automática a cada 5 minutos
-
-rasa data validate
+- **Auto-refresh**: Atualização automática a cada 5 minutos
 
 ### 3. Instalar Dependências
 
-# Treino forçado
-
-rasa train --force```bash### Relatórios por Linha de Comando
-
-```
+```bash### Relatórios por Linha de Comando
 
 # Atualizar pip```bash
 
-### Flask não conecta ao Rasa
+pip install --upgrade pip# Gerar relatório completo dos últimos 30 dias
 
-```bashpip install --upgrade pip# Gerar relatório completo dos últimos 30 dias
+python kpi_dashboard.py
 
-# Verificar se Rasa está rodando
+# Instalar dependências do projeto
 
-curl http://localhost:5005/statuspython kpi_dashboard.py
+pip install -r requirements.txt# O arquivo kpis_chatbot.json será gerado com dados completos
 
+```
 
+# Verificar instalação do Rasa
 
-# Verificar logs# Instalar dependências do projeto
+rasa --version### APIs Disponíveis
 
-tail -f rasa.log
-
-```pip install -r requirements.txt# O arquivo kpis_chatbot.json será gerado com dados completos
-
-
-
-## 🧪 Testes```
-
-
-
-```bash# Verificar instalação do Rasa
-
-# Teste interativo
-
-rasa shellrasa --version### APIs Disponíveis
-
-
-
-# Testar apenas NLU``````bash
-
-rasa shell nlu
+``````bash
 
 # Obter KPIs em JSON
 
-# Testes automatizados
-
-rasa test### 4. Instalar Dependências Adicionais (se necessário)curl http://localhost:5000/kpis
-
-```
+### 4. Instalar Dependências Adicionais (se necessário)curl http://localhost:5000/kpis
 
 ```bash
 
-## 🤝 Contribuir
-
 # Para sistemas que precisem de dependências extras# Obter lista de leads
 
-1. Fork do repositório
+pip install wheel setuptoolscurl http://localhost:5000/leads
 
-2. Criar branch: `git checkout -b minha-feature`pip install wheel setuptoolscurl http://localhost:5000/leads
 
-3. Commit: `git commit -m "Nova funcionalidade"`
-
-4. Push: `git push origin minha-feature`
-
-5. Criar Pull Request
 
 # Para problemas com TensorFlow no macOS M1/M2# Obter reclamações
 
-## 📄 Licença
-
 pip install tensorflow-macos tensorflow-metalcurl http://localhost:5000/reclamacoes
-
-Este projeto está sob a licença MIT. Veja [LICENSE](LICENSE) para mais detalhes.
 
 ```
 
-## 📞 Suporte
-
 # Verificar status dos serviços
 
-- **GitHub**: [Issues](https://github.com/casousavng/chatbot/issues)
+## ⚙️ Configuraçãocurl http://localhost:5000/health
 
-- **Documentação**: Este README.md## ⚙️ Configuraçãocurl http://localhost:5000/health
+```
 
-
-
----```
-
-
-
-**Desenvolvido com ❤️ usando Rasa e Flask**### 1. Estrutura de Arquivos
+### 1. Estrutura de Arquivos
 
 Certifique-se que tem esta estrutura:## 🌐 Matriz de Roteamento Comercial
 
