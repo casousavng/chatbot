@@ -68,11 +68,30 @@ python app.py
 - **Python 3.9+** instalado
 - **pip** (package manager)
 - **Git** (opcional mas recomendado)
+- **Ollama** para rodar modelos LLM localmente
 
 Verificar instalações:
 ```bash
 python --version  # Deve mostrar 3.9+
 pip --version
+```
+
+### Instalar Ollama
+
+#### macOS
+```bash
+brew install ollama
+```
+Ou baixe diretamente em: [ollama.com/download](https://ollama.com/download)
+
+#### Windows
+Baixe o instalador em: [ollama.com/download](https://ollama.com/download)
+
+### Baixar o modelo Llama3
+
+Após instalar o Ollama, execute:
+```bash
+ollama pull llama3
 ```
 
 ## 📦 Instalação
@@ -101,6 +120,11 @@ rasa run --enable-api --cors "*" --port 5005
 ```bash
 source venv/bin/activate
 python app.py
+```
+
+**Terminal 3 - Ollama (opcional, para LLM local):**
+```bash
+ollama run llama3
 ```
 
 ## 🎯 Como Usar
@@ -167,8 +191,7 @@ Este projeto está sob a licença MIT. Veja [LICENSE](LICENSE) para mais detalhe
 ## 📞 Suporte
 
 - **GitHub**: [Issues](https://github.com/casousavng/chatbot/issues)
-- **Email**: suporte@papercare.pt
 
 ---
 
-**Desenvolvido com ❤️ usando Rasa e Flask**
+**Desenvolvido com ❤️ usando Rasa, Flask e Ollama**
