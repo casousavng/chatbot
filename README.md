@@ -59,21 +59,21 @@ rasa train
 
 ### 4. Executar os servidores
 
-**Terminal 1 - Servidor Rasa:**
+**Terminal 1 - Ollama (LLM local):**
+```bash
+ollama run llama3
+```
+
+**Terminal 2 - Servidor Rasa:**
 ```bash
 source venv/bin/activate
 rasa run --enable-api --cors "*" --port 5005
 ```
 
-**Terminal 2 - Servidor Flask:**
+**Terminal 3 - Servidor Flask:**
 ```bash
 source venv/bin/activate
 python app.py
-```
-
-**Terminal 3 - Ollama (LLM local):**
-```bash
-ollama run llama3
 ```
 
 ### 5. Aceder ao chatbot
