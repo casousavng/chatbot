@@ -62,13 +62,6 @@ rasa.log
 rasa_server.log
 flask_server.log
 
-# Database files
-*.db
-*.sqlite3
-*.db-journal
-chatbot_kpis.db
-rasa_tracker.db
-
 # Logs
 *.log
 nohup.out

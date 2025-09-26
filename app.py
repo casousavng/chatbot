@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, render_template, request, jsonify
 import requests
 import datetime
@@ -63,7 +64,7 @@ def send_message():
             })
             
     except Exception as e:
-        print(f"Erro ao comunicar com Rasa: {e}")
+        print("Erro ao comunicar com Rasa: " + str(e))
         return jsonify({
             "messages": ["Serviço temporariamente indisponível. Tente novamente em alguns instantes."],
             "status": "error"

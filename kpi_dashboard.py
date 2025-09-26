@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Dashboard de KPIs do Chatbot
 Monitora métricas de performance, satisfação, conversão e reclamações
@@ -6,11 +7,10 @@ Monitora métricas de performance, satisfação, conversão e reclamações
 
 import sqlite3
 import datetime
-from typing import Dict, List
 import json
 
 class ChatbotKPIDashboard:
-    def __init__(self, db_path: str = 'chatbot_kpis.db'):
+    def __init__(self, db_path='chatbot_kpis.db'):
         self.db_path = db_path
         self._init_database()
     
@@ -149,7 +149,7 @@ class ChatbotKPIDashboard:
         
         return resultado or 0
     
-    def get_reclamacoes_por_categoria(self, periodo_dias: int = 30) -> Dict[str, int]:
+    def get_reclamacoes_por_categoria(self, periodo_dias=30):
         """Quebra reclamações por categoria"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
@@ -167,7 +167,7 @@ class ChatbotKPIDashboard:
         
         return {categoria: count for categoria, count in resultados}
     
-    def get_leads_por_produto(self, periodo_dias: int = 30) -> Dict[str, int]:
+    def get_leads_por_produto(self, periodo_dias=30):
         """Quebra leads por produto"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
@@ -185,7 +185,7 @@ class ChatbotKPIDashboard:
         
         return {produto: count for produto, count in resultados}
     
-    def get_leads_por_mercado(self, periodo_dias: int = 30) -> Dict[str, int]:
+    def get_leads_por_mercado(self, periodo_dias=30):
         """Quebra leads por mercado"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
@@ -203,7 +203,7 @@ class ChatbotKPIDashboard:
         
         return {mercado: count for mercado, count in resultados}
     
-    def gerar_relatorio_completo(self, periodo_dias: int = 30) -> Dict:
+    def gerar_relatorio_completo(self, periodo_dias=30):
         """Gera relatório completo dos KPIs"""
         relatorio = {
             'periodo_dias': periodo_dias,
