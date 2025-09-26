@@ -23,6 +23,28 @@ Um chatbot inteligente especializado em produtos de papel higiénico, desenvolvi
 
 ## 🚀 Início Rápido
 
+> **Nota:** Antes de tudo, é necessário instalar o Ollama e baixar o modelo Llama3 para rodar o chatbot corretamente.
+
+### 1. Instalar Ollama
+
+#### macOS
+```bash
+brew install ollama
+```
+Ou baixe diretamente em: [ollama.com/download](https://ollama.com/download)
+
+#### Windows
+Baixe o instalador em: [ollama.com/download](https://ollama.com/download)
+
+### 2. Baixar o modelo Llama3
+
+Após instalar o Ollama, execute:
+```bash
+ollama pull llama3
+```
+
+### 3. Clonar o projeto e instalar dependências
+
 ```bash
 git clone https://github.com/casousavng/chatbot.git
 cd chatbot
@@ -33,15 +55,30 @@ source venv/bin/activate  # Linux/macOS
 
 pip install -r requirements.txt
 rasa train
-
-# Terminal 1
-rasa run --enable-api --cors "*" --port 5005
-
-# Terminal 2
-python app.py
-
-# Aceder: http://localhost:5020
 ```
+
+### 4. Executar os servidores
+
+**Terminal 1 - Servidor Rasa:**
+```bash
+source venv/bin/activate
+rasa run --enable-api --cors "*" --port 5005
+```
+
+**Terminal 2 - Servidor Flask:**
+```bash
+source venv/bin/activate
+python app.py
+```
+
+**Terminal 3 - Ollama (LLM local):**
+```bash
+ollama run llama3
+```
+
+### 5. Aceder ao chatbot
+
+Abra o navegador em: [http://localhost:5020](http://localhost:5020)
 
 ## ✨ Funcionalidades
 
@@ -65,67 +102,25 @@ python app.py
 
 ## 📋 Pré-requisitos
 
+- **Ollama** instalado e modelo Llama3 baixado
 - **Python 3.9+** instalado
 - **pip** (package manager)
 - **Git** (opcional mas recomendado)
-- **Ollama** para rodar modelos LLM localmente
 
 Verificar instalações:
 ```bash
 python --version  # Deve mostrar 3.9+
 pip --version
-```
-
-### Instalar Ollama
-
-#### macOS
-```bash
-brew install ollama
-```
-Ou baixe diretamente em: [ollama.com/download](https://ollama.com/download)
-
-#### Windows
-Baixe o instalador em: [ollama.com/download](https://ollama.com/download)
-
-### Baixar o modelo Llama3
-
-Após instalar o Ollama, execute:
-```bash
-ollama pull llama3
+ollama --version
 ```
 
 ## 📦 Instalação
 
-```bash
-git clone https://github.com/casousavng/chatbot.git
-cd chatbot
-
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# ou venv\Scripts\activate  # Windows
-
-pip install -r requirements.txt
-rasa train
-```
+Siga os passos da seção [Início Rápido](#-início-rápido) para garantir que o Ollama está instalado e o modelo Llama3 baixado antes de instalar as dependências do projeto.
 
 ## 🏃‍♂️ Execução
 
-**Terminal 1 - Servidor Rasa:**
-```bash
-source venv/bin/activate
-rasa run --enable-api --cors "*" --port 5005
-```
-
-**Terminal 2 - Servidor Flask:**
-```bash
-source venv/bin/activate
-python app.py
-```
-
-**Terminal 3 - Ollama (opcional, para LLM local):**
-```bash
-ollama run llama3
-```
+Veja os comandos na seção [Início Rápido](#-início-rápido) para rodar todos os servidores necessários.
 
 ## 🎯 Como Usar
 
